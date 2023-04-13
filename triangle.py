@@ -54,7 +54,7 @@ def main(side_length):
         # Update parameters for the next triangle
         radius *= scale_factor
         theta += delta
-        z+=1
+        z+=3
 
     lines.append(f"G1 Z1.0" + eol)
     lines.append("G1 Z5 E-2 F200" + eol) # move up & retract plunger a bit
