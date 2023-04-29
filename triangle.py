@@ -5,6 +5,8 @@
 #
 
 import math
+import matplotlib.pyplot as plt
+import numpy as np
 
 FEEDRATE = 200
 EXTRUSION = 0.5
@@ -21,28 +23,17 @@ def main(side_length):
     
 
     # Parameters
-    center_x = 0   # x-coordinate of the center of the triangles
-    center_y = 0   # y-coordinate of the center of the triangles
-    radius = 16   # distance from the center of the triangle to its corners
-    delta = math.pi/40  # angle by which to offset the next triangle (12 degrees)
-    scale_factor = 25  # factor by which to reduce the radius of each triangle
-    theta = 0
+    
+    A = 25  # factor by which to reduce the radius of each triangle
     z = 0 #tweaks how far the previous triangle is from the next (z-movement)
     for layer in range(0, 5, 1):
         
         lines.append(f"G1 E0.25" + eol) # Extrude a small amount (prime nozzle)
-        for i in range(0,108,1):  # draw 10 triangles
-            j = i * .3
-            r = scale_factor * math.cos(-.4 * j)
-            # Calculate coordinates of the triangle vertices
-            x = r * math.cos(j)
-            y =r * math.sin(j)
-
+        for theta in np.linspace(0, 10*math.pi, 200):
+            r = A * math.cos(-0.4 * theta)
+            x = r * math.cos(theta)
+            y =r * math.sin(theta)
             lines.append(f"G1 X{x}                Y{y}  Z{z} E{EXTRUSION} F{FEEDRATE}" + eol)
-            
-            # Update parameters for the next triangle
-            radius *= scale_factor
-            theta += delta
             
         if layer % 2 == 0:
         # Select tool number 2 and apply an offset of 18mm to the left
