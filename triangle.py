@@ -35,18 +35,17 @@ def main(side_length):
             y =r * math.sin(theta)
             lines.append(f"G1 X{x}                Y{y}  Z{z} E{EXTRUSION} F{FEEDRATE}" + eol)
             
-        if layer % 2 == 0:
-        # Select tool number 2 and apply an offset of 18mm to the left
-            lines.append(f"G1 Z{z} E-.25 F200" + eol) # move up & retract plunger a bit
-            lines.append("T1 M6" + eol)
+        # if layer % 2 == 0:
+        # # Select tool number 2 and apply an offset of 18mm to the left
+        #     lines.append(f"G1 Z{z} E-.25 F200" + eol) # move up & retract plunger a bit
+        #     lines.append("T1 M6" + eol) 
+        #     lines.append(f"G1 X-18 E0 F200" + eol)
             
-            lines.append(f"G1 X-18 E0 F200" + eol)
-            
-        else:
-            lines.append(f"G1 Z{z} E-.25 F200" + eol) # move up & retract plunger a bit
-            lines.append("T0 M6" + eol)
-            lines.append(f"G1 X18 E0 F200" + eol)
-        
+        # else:
+        #     lines.append(f"G1 Z{z} E-.25 F200" + eol) # move up & retract plunger a bit
+        #     lines.append("T0 M6" + eol)
+        #     lines.append(f"G1 X18 E0 F200" + eol)   
+    
         z = layer
         
 
