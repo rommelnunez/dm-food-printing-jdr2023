@@ -5,7 +5,6 @@
 #
 
 import math
-import matplotlib.pyplot as plt
 import numpy as np
 
 FEEDRATE = 200
